@@ -1,3 +1,4 @@
+require('dotenv').config()
 const experss=require("express")
 const app=experss()
 const cors=require("cors")
@@ -7,10 +8,10 @@ app.use(cors())
 app.use(experss.json())
 const server=http.createServer(app)
 const { v4: uuidv4 } = require('uuid');
-
+const PORT=process.env.PORT || 4000
 const io =new Server(server, {
     cors: {
-      origin: 'http://localhost:3000', // Update with your React app's origin
+      origin: 'https://videofrontend.vercel.app/', // Update with your React app's origin
       methods: ['GET', 'POST'],
     },
   });
@@ -40,4 +41,4 @@ app.get("/join",(req,res,next)=>{
 })
 
 
-server.listen(4000,()=>console.log("Server started at port 4000"))
+server.listen(PORT,()=>console.log("Server started at port 4000"))
